@@ -43,7 +43,7 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 2741241177
-    locked: 1
+    locked: 0
   - name: Middle hidden
     uniqueID: 3615786133
     locked: 0
