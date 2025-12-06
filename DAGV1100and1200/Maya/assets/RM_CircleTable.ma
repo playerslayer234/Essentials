@@ -1,22 +1,23 @@
 //Maya ASCII 2026 scene
 //Name: RM_CircleTable.ma
-//Last modified: Sun, Nov 23, 2025 04:34:26 PM
+//Last modified: Fri, Dec 05, 2025 10:13:12 PM
 //Codeset: 1252
 requires maya "2026";
 requires "stereoCamera" "10.0";
-requires "mtoa" "5.5.3";
+requires -nodeType "aiOptions" -nodeType "aiAOVDriver" -nodeType "aiAOVFilter" -nodeType "aiImagerDenoiserOidn"
+		 "mtoa" "5.5.3";
 currentUnit -l centimeter -a degree -t film;
 fileInfo "application" "maya";
 fileInfo "product" "Maya 2026";
 fileInfo "version" "2026";
 fileInfo "cutIdentifier" "202507081222-4d6919b75c";
 fileInfo "osv" "Windows 10 Home v2009 (Build: 19045)";
-fileInfo "UUID" "AD24C583-40DD-9359-5EC2-E182A0FE25B2";
+fileInfo "UUID" "3364C20A-418A-BC57-2922-25B3124D1C04";
 createNode transform -s -n "persp";
 	rename -uid "DDE849D3-4C03-3991-F227-938035BB3937";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" -6.2389922949201093 2.5686981907316819 14.702742611954406 ;
-	setAttr ".r" -type "double3" -1.5383527297754001 1056.999999999887 1.0797589325361806e-16 ;
+	setAttr ".t" -type "double3" -5.7036618506362391 9.5071016496444969 12.945659449274089 ;
+	setAttr ".r" -type "double3" -27.938352729775481 1056.199999999887 0 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "375D4332-4DD0-A8BB-2D66-2C9A296B7E60";
 	setAttr -k off ".v" no;
@@ -5458,20 +5459,20 @@ createNode mesh -n "RM_CircleTableShape" -p "RM_CircleTable";
 	setAttr ".pd[0]" -type "dataPolyComponent" Index_Data UV 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
 createNode lightLinker -s -n "lightLinker1";
-	rename -uid "96A9054E-4092-F832-9463-AF8BD7A2D910";
+	rename -uid "15AB88F2-45EA-97CB-44F4-D1AD43F3A730";
 	setAttr -s 3 ".lnk";
 	setAttr -s 3 ".slnk";
 createNode shapeEditorManager -n "shapeEditorManager";
-	rename -uid "DA6E06D4-4F7A-F32A-2445-E58D005FD969";
+	rename -uid "34753EE0-4F27-2D51-D125-EA95C57C1FA6";
 createNode poseInterpolatorManager -n "poseInterpolatorManager";
-	rename -uid "B981DD81-4E51-C7EE-DB5B-0690D906C1CD";
+	rename -uid "A527DFEE-4687-4675-4488-EDA3FB59257E";
 createNode displayLayerManager -n "layerManager";
-	rename -uid "C3E2670E-4E75-A36F-3DD6-A3AEC8EC87F7";
+	rename -uid "B8394B2C-4E55-A1BA-8AA2-0DA0E66A9149";
 createNode displayLayer -n "defaultLayer";
 	rename -uid "B25EBC4C-4DA9-9612-9F72-B0961A73B083";
 	setAttr ".ufem" -type "stringArray" 0  ;
 createNode renderLayerManager -n "renderLayerManager";
-	rename -uid "8B6ACAC7-4EFA-D912-E186-5A85059CD832";
+	rename -uid "6618023D-49B1-D39E-E568-6D857944F71D";
 createNode renderLayer -n "defaultRenderLayer";
 	rename -uid "0D29781C-47AE-6E10-89A9-5296FAAAB801";
 	setAttr ".g" yes;
@@ -5539,7 +5540,7 @@ createNode materialInfo -n "materialInfo1";
 	rename -uid "150C01A3-4B1C-D0FE-7B5B-0195A01357DB";
 createNode file -n "file1";
 	rename -uid "28657B02-4E5D-9796-B989-E78332EDC2F1";
-	setAttr ".ftn" -type "string" "C:/Essentials/DAGV1100and1200/Maya//sourceimages/1x/Scene2.png";
+	setAttr ".ftn" -type "string" "C:/Essentials/DAGV1100and1200/Maya//sourceimages/1x/Scene2_Texture.png";
 	setAttr ".cs" -type "string" "sRGB Encoded Rec.709 (sRGB)";
 createNode place2dTexture -n "place2dTexture1";
 	rename -uid "60392282-4EBF-8314-8146-74950DBEDE65";
@@ -5561,6 +5562,23 @@ createNode nodeGraphEditorInfo -n "hyperShadePrimaryNodeEditorSavedTabsInfo";
 	setAttr ".tgi[0].ni[3].x" 865.71429443359375;
 	setAttr ".tgi[0].ni[3].y" -20;
 	setAttr ".tgi[0].ni[3].nvs" 1923;
+createNode aiOptions -s -n "defaultArnoldRenderOptions";
+	rename -uid "A4B10370-4CE8-83C6-4C16-ABBCAB2D7163";
+	addAttr -ci true -sn "ARV_options" -ln "ARV_options" -dt "string";
+	setAttr ".version" -type "string" "5.5.3";
+	setAttr ".ARV_options" -type "string" "Test Resolution=100%;Camera=perspShape;Color Management.Gamma=1;Color Management.Exposure=0;Background.BG=BG Color;Background.Color=0 0 0;Background.Image=;Background.Scale=1    1;Background.Offset=0    0;Background.Apply Color Management=1;Foreground.Enable FG=0;Foreground.Image=;Foreground.Scale=1    1;Foreground.Offset=0    0;Foreground.Apply Color Management=1;";
+createNode aiAOVFilter -s -n "defaultArnoldFilter";
+	rename -uid "0FAA5851-4065-CB64-218E-CB9DB84B8280";
+	setAttr ".ai_translator" -type "string" "gaussian";
+createNode aiAOVDriver -s -n "defaultArnoldDriver";
+	rename -uid "0DEF4835-480F-E791-032D-F3B3BBCEC97C";
+	setAttr ".ai_translator" -type "string" "exr";
+createNode aiAOVDriver -s -n "defaultArnoldDisplayDriver";
+	rename -uid "24F5FA9D-4138-6A08-AE30-67BE29818BBA";
+	setAttr ".ai_translator" -type "string" "maya";
+	setAttr ".output_mode" 0;
+createNode aiImagerDenoiserOidn -s -n "defaultArnoldDenoiser";
+	rename -uid "E9C490AA-4CA2-69F2-2205-29BA11DB4C59";
 select -ne :time1;
 	setAttr ".o" 1;
 	setAttr ".unw" 1;
@@ -5609,8 +5627,6 @@ select -ne :defaultColorMgtGlobals;
 select -ne :hardwareRenderGlobals;
 	setAttr ".ctrs" 256;
 	setAttr ".btrs" 512;
-select -ne :ikSystem;
-	setAttr -s 4 ".sol";
 relationship "link" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" "lambert2SG.message" ":defaultLightSet.message";
@@ -5655,6 +5671,12 @@ connectAttr "lambert2.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[2
 		;
 connectAttr "lambert2SG.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[3].dn"
 		;
+connectAttr ":defaultArnoldDenoiser.msg" ":defaultArnoldRenderOptions.imagers" -na
+		;
+connectAttr ":defaultArnoldDisplayDriver.msg" ":defaultArnoldRenderOptions.drivers"
+		 -na;
+connectAttr ":defaultArnoldFilter.msg" ":defaultArnoldRenderOptions.filt";
+connectAttr ":defaultArnoldDriver.msg" ":defaultArnoldRenderOptions.drvr";
 connectAttr "lambert2SG.pa" ":renderPartition.st" -na;
 connectAttr "lambert2.msg" ":defaultShaderList1.s" -na;
 connectAttr "place2dTexture1.msg" ":defaultRenderUtilityList1.u" -na;
